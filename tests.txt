@@ -1,0 +1,78 @@
+Computer Hardware Specifications
+================================
+CPU: Intel Core i7 975 @ 3.33 GHz
+Memory: 6 GB DDR3-???? (Overclocked)
+Runnins inside virtual machine with 4 GB
+--------------------------------
+
+
+   _______________________________
+///                               \\\
+||| Test 1: Default Configuration |||
+\\\_______________________________///
+Configuration Parameters
+========================
+Rings: 6
+Ring Radius: 1.000000
+Charges per Ring: 10
+Voltage: 400.000000 V
+Iterations: 8000000
+Threads: 8
+
+Iterations per Thread: 1000000
+Total iterations: 8000000
+Skipped iterations: 0
+
+Grid size (Width): 100
+Grid size (Height): 100
+Grid size (Depth): 100
+------------------------
+Charges distirubion: 1560.200491
+
+   ____________________________________
+///                                    \\\
+||| Test 2: 3 Threads, 1234 Iterations |||
+\\\____________________________________///
+Configuration Parameters
+========================
+Rings: 6
+Ring Radius: 1.000000
+Charges per Ring: 10
+Voltage: 400.000000 V
+Iterations: 1234
+Threads: 3
+
+Iterations per Thread: 411
+Total iterations: 1233
+Skipped iterations: 1
+
+Grid size (Width): 100
+Grid size (Height): 100
+Grid size (Depth): 100
+------------------------
+Charges distirubion: 1568.607074
+
+   ____________________
+///                    \\\
+||| Test 3: Large run  |||
+\\\____________________///
+Configuration Parameters
+========================
+Rings: 6
+Ring Radius: 1.000000
+Charges per Ring: 10
+Voltage: 400.000000 V
+Iterations: 100000000
+Threads: 8
+
+Iterations per Thread: 12500000
+Total iterations: 100000000
+Skipped iterations: 0
+
+Grid size (Width): 500
+Grid size (Height): 500
+Grid size (Depth): 500
+------------------------
+Charges distirubion: 1560.456235
+
+

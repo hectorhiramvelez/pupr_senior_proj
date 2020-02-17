@@ -1,0 +1,89 @@
+Configuration Parameters
+========================
+Rings: 6
+Ring Radius: 1.000000
+Charges per Ring: 10
+Voltage: 400.000000 V
+Iterations: 1234
+Threads: 3
+
+Iterations per Thread: 411
+Total iterations: 1233
+Skipped iterations: 1
+
+Grid size (Width): 100
+Grid size (Height): 100
+Grid size (Depth): 100
+------------------------
+Ring charge positions
+=====================
+Ring 1:
+ --> Charge 1 coordinates: (0.664247, -0.747513, 0.000000)
+ --> Charge 2 coordinates: (-0.725457, 0.688267, 0.000000)
+ --> Charge 3 coordinates: (0.954424, -0.298454, 0.000000)
+ --> Charge 4 coordinates: (-0.923179, 0.384371, 0.000000)
+ --> Charge 5 coordinates: (0.999896, 0.014399, 0.000000)
+ --> Charge 6 coordinates: (-0.991817, -0.127668, 0.000000)
+ --> Charge 7 coordinates: (0.917787, 0.397073, 0.000000)
+ --> Charge 8 coordinates: (-0.841722, -0.539911, 0.000000)
+ --> Charge 9 coordinates: (0.606452, 0.795120, 0.000000)
+ --> Charge 10 coordinates: (-0.569809, -0.821777, 0.000000)
+Ring 2:
+ --> Charge 1 coordinates: (0.460074, -0.847216, 0.265624)
+ --> Charge 2 coordinates: (-0.395731, 0.889492, -0.228476)
+ --> Charge 3 coordinates: (0.812019, -0.347612, 0.468819)
+ --> Charge 4 coordinates: (-0.714064, 0.565818, -0.412265)
+ --> Charge 5 coordinates: (0.855234, 0.157375, 0.493769)
+ --> Charge 6 coordinates: (-0.866008, -0.006337, -0.499990)
+ --> Charge 7 coordinates: (0.774758, 0.446840, 0.447307)
+ --> Charge 8 coordinates: (-0.787607, -0.415813, -0.454725)
+ --> Charge 9 coordinates: (0.504147, 0.813090, 0.291069)
+ --> Charge 10 coordinates: (-0.405612, -0.883537, -0.234180)
+Ring 3:
+ --> Charge 1 coordinates: (0.331657, -0.748340, 0.574447)
+ --> Charge 2 coordinates: (-0.238035, 0.879407, -0.412289)
+ --> Charge 3 coordinates: (0.483255, -0.256627, 0.837023)
+ --> Charge 4 coordinates: (-0.457276, 0.404467, -0.792026)
+ --> Charge 5 coordinates: (0.498756, -0.070497, 0.863871)
+ --> Charge 6 coordinates: (-0.499192, 0.056845, -0.864625)
+ --> Charge 7 coordinates: (0.461055, 0.386926, 0.798571)
+ --> Charge 8 coordinates: (-0.486884, -0.227547, -0.843307)
+ --> Charge 9 coordinates: (0.377349, 0.656071, 0.653588)
+ --> Charge 10 coordinates: (-0.300772, -0.798840, -0.520952)
+Ring 4:
+ --> Charge 1 coordinates: (0.000000, -0.809437, 0.587206)
+ --> Charge 2 coordinates: (-0.000000, 0.638730, -0.769431)
+ --> Charge 3 coordinates: (0.000000, -0.318582, 0.947895)
+ --> Charge 4 coordinates: (-0.000000, 0.402327, -0.915496)
+ --> Charge 5 coordinates: (0.000000, 0.194229, 0.980956)
+ --> Charge 6 coordinates: (-0.000000, 0.165198, -0.986260)
+ --> Charge 7 coordinates: (0.000000, 0.387749, 0.921765)
+ --> Charge 8 coordinates: (-0.000000, -0.379817, -0.925062)
+ --> Charge 9 coordinates: (0.000000, 0.795532, 0.605912)
+ --> Charge 10 coordinates: (-0.000000, -0.732383, -0.680893)
+Ring 5:
+ --> Charge 1 coordinates: (-0.307686, -0.788237, 0.532928)
+ --> Charge 2 coordinates: (0.388725, 0.628944, -0.673292)
+ --> Charge 3 coordinates: (-0.421526, -0.537832, 0.730104)
+ --> Charge 4 coordinates: (0.484381, 0.247993, -0.838972)
+ --> Charge 5 coordinates: (-0.498497, -0.077490, 0.863421)
+ --> Charge 6 coordinates: (0.491086, -0.187989, -0.850585)
+ --> Charge 7 coordinates: (-0.467320, 0.355597, 0.809421)
+ --> Charge 8 coordinates: (0.458291, -0.399846, -0.793784)
+ --> Charge 9 coordinates: (-0.362369, 0.689025, 0.627641)
+ --> Charge 10 coordinates: (0.249082, -0.867083, -0.431422)
+Ring 6:
+ --> Charge 1 coordinates: (-0.467785, -0.841568, 0.270076)
+ --> Charge 2 coordinates: (0.389267, 0.893287, -0.224743)
+ --> Charge 3 coordinates: (-0.792059, -0.404380, 0.457296)
+ --> Charge 4 coordinates: (0.691834, 0.601515, -0.399431)
+ --> Charge 5 coordinates: (-0.857107, -0.143145, 0.494851)
+ --> Charge 6 coordinates: (0.865403, 0.037902, -0.499641)
+ --> Charge 7 coordinates: (-0.820873, 0.318680, 0.473931)
+ --> Charge 8 coordinates: (0.776419, -0.442979, -0.448266)
+ --> Charge 9 coordinates: (-0.646806, 0.664973, 0.373434)
+ --> Charge 10 coordinates: (0.513651, -0.805119, -0.296557)
+
+Charges distirubion: 1568.607074
+--------------------
+

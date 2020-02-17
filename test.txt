@@ -1,0 +1,181 @@
+Test suite for Energy Field software
+
+    The Energy Field software's test suite is designed to test varius functions
+of the software. The tests are divided into two groups, Automated tests and
+interactive tests. The automated tests are done first and require no user
+input to run. The interactive tests are designed so the user can input its
+values and/or check the output to make sure they're correct.
+
+    After all tests are finished, a message log is shown showing a summary of
+errorr, warnings and notes to show the user of anything important that may had
+happened during the tests, such as bad validation.
+
+    Each test is described below, along with the steps the test does to conduct
+its tests, and instructions to check them they're correct. An example output is
+also shown for each test.
+
+
+    =======================================================================
+===============================================================================
+=============================== Automated Tests ===============================
+===============================================================================
+    =======================================================================
+
++-----------------------------------------------------------------------------+
+|                            Ring Automated Test 1                            |
++-----------------------------------------------------------------------------+
+|Ring and charge rotations, balance and pole restrictions                     |
+|                                                                             |
+|    This test creates 10,000,000 charges and check them to see if they're    |
+|properly balanced and check they're at least 15 degrees away from the poles. |
+|Then this test rotates the ring 30 degrees and check the charges coordinates |
+|to see if they're rotated properly                                           |
+|                                                                             |
+|Notes:                                                                       |
+|  * This test requires about 320 MB memory to run                            |
+|  * This test may take some time on slower machines                          |
++-----------------------------------------------------------------------------+
+|Initializing ring (10000000 charges)...done                                  |
+|Testing charge placement degrees and ring balance...done                     |
+|Min: -75.000                                                                 |
+|Max: 75.000                                                                  |
+|Left side charges: 5000000                                                   |
+|Right side charges: 5000000                                                  |
+|                                                                             |
+|Rotating ring 30 degrees (M_PI * (30.0 / 180.0))...done                      |
+|Testing ring rotation degrees...done                                         |
+|Min: 30.000                                                                  |
+|Max: 30.000                                                                  |
++-----------------------------------------------------------------------------+
+
+
+
+    =======================================================================
+===============================================================================
+============================== Interactive Tests ==============================
+===============================================================================
+    =======================================================================
+
++-----------------------------------------------------------------------------+
+|                          Prompt Interactive Test 1                          |
++-----------------------------------------------------------------------------+
+|Input tests and validation                                                   |
+|                                                                             |
+|    This tests asks the user a series of values of each type. The test then  |
+|shows the user the returned value, and asks if the value is correct. Each    |
+|type can accept a certain range of values, which are as follows:             |
+|                                                                             |
+|  +----------------------------------------------------------------------+   |
+|  |                      Data type limits (64-bit)                       |   |
+|  +----------------+--------------------------+--------------------------+   |
+|  |Type            |         Minimum          |         Maximum          |   |
+|  +----------------+--------------------------+--------------------------+   |
+|  |short           |                   -32,768|                   +32,767|   |
+|  |unsigned short  |                         0|                    65,536|   |
+|  |int             |            -2,147,483,648|            +2,147,483,647|   |
+|  |unsigned int    |                         0|             4,294,967,295|   |
+|  |long            |-9,223,372,036,854,775,808|+9,223,372,036,854,775,807|   |
+|  |unsigned long   |                         0|18,446,744,073,709,551,615|   |
+|  +----------------+--------------------------+--------------------------|   |
+|  |float           |      Approximately 7 digit precision (32-bit)       |   |
+|  |double          |      Approximately 15 digit precision (64-bit)      |   |
+|  |long double     |      Approximately ?? digit precision (??-bit)      |   |
+|  +----------------+--------------------------+--------------------------+   |
+|  |string          |    zero-length string    |(BUFSIZ - 1) length string|   |
+|  +----------------+--------------------------+--------------------------+   |
+|  |Notes:                                                                |   |
+|  |  * Positive sign on maximum values is implicit. They're in the table |   |
+|  |    to mark that unsigned values have no sign. Unsigned values are    |   |
+|  |    considered positive.                                              |   |
+|  |  * Commas are not accepted by the input functions. They're in the    |   |
+|  |    table to aid readers.                                             |   |
+|  |  * Entering a max-length string may cause a buffer overflow during   |   |
+|  |    this test.                                                        |   |
+|  |  * BUFSIZ is a compile-time constant on the standard header files and|   |
+|  |    may be different from compiler to compiler or system to system.   |   |
+|  +----------------------------------------------------------------------+   |
+|    Yes or no prompts are indirectly tested by this test. Any unexpected     |
+|result from a yes-or-no answer should be noted as an error. Please note that |
+|yes-or-no prompt function has been made flexible to accept any positive or   |
+|negative answer. Check prompt_yn() in prompt.c for more information about the|
+|accepted input values.                                                       |
++-----------------------------------------------------------------------------+
+|Enter "short" number: -15000                                                 |
+|The number you entered is -15000, is this correct?: yes                      |
+|Enter "unsigned short" number: 29000                                         |
+|The number you entered is 29000, is this correct?: yes                       |
+|Enter "int" number: -123456789                                               |
+|The number you entered is -123456789, is this correct?: yes                  |
+|Enter "unsigned int" number: 20502104                                        |
+|The number you entered is 20502104, is this correct?: yes                    |
+|Enter "long" number: 999422405222445123                                      |
+|The number you entered is 999422405222445123, is this correct?: yes          |
+|Enter "unsigned long" number: 33312                                          |
+|The number you entered is 33312, is this correct?: yes                       |
+|Enter "float" number: 12.123456                                              |
+|The number you entered is 12.123456, is this correct?: yes                   |
+|Enter "double" number: 15.12000                                              |
+|The number you entered is 15.120000, is this correct?: yes                   |
+|Enter "long double" number: 15.1350                                          |
+|The number you entered is 15.135000, is this correct?: yes                   |
+|Enter a "string": This is a string                                           |
+|The string you entered is "This is a string", is this correct?: yes          |
++-----------------------------------------------------------------------------+
+
++-----------------------------------------------------------------------------+
+|                           Ring Interactive Test 1                           |
++-----------------------------------------------------------------------------+
+|Ring rotation and poles restriction                                          |
+|                                                                             |
+|    This test creates 10 charges and output their coordinates, then rotates  |
+|the ring 30 degrees and output the new charges coordinates. It is the job of |
+|the user to check those values and optionally visualize them in the user's   |
+|choice of software.                                                          |
+|                                                                             |
+|    This test also check for poles and rotated degrees and output them to the|
+|right of the generated tables. It is also the job of the user to check them  |
+|to make sure they're correct using the same restriction as the Ring Automated|
+|Test 1. The user is required to answer to confirm they're correct            |
+|                                                                             |
+|    The values can be visualized in any software that support plotting       |
+|plotting of points, such as Microsoft Office Excel or OpenOffice.org Calc.   |
+|Please note that the software you choose to plot the points at should be able|
+|to at least support plotting XY values (2D). Critical for 1st table are the  |
+|X and Y values, and for the 2nd table are X and Z values.                    |
++-----------------------------------------------------------------------------+
+|Initializing ring...done                                                     |
+|Current ring charge coordinates                                              |
+|+---------+---------+---------+                                              |
+||    X    |    Y    |    Z    |                                              |
+|+---------+---------+---------+                                              |
+||  84.0470| -54.1859|   0.0000| Charge placement degrees: -32.810            |
+|| -94.1372|  33.7369|   0.0000| Charge placement degrees: -19.717            |
+||  58.8729|  80.8331|   0.0000| Charge placement degrees: 53.933             |
+|| -62.7586|  77.8547|   0.0000| Charge placement degrees: -51.128            |
+||  61.3274|  78.9871|   0.0000| Charge placement degrees: 52.173             |
+|| -41.1926| -91.1218|   0.0000| Charge placement degrees: 65.674             |
+||  80.8175|  58.8942|   0.0000| Charge placement degrees: 36.082             |
+|| -52.7248| -84.9712|   0.0000| Charge placement degrees: 58.180             |
+||  40.2869|  91.5258|   0.0000| Charge placement degrees: 66.242             |
+|| -86.7085| -49.8160|   0.0000| Charge placement degrees: 29.878             |
+|+---------+---------+---------+                                              |
+|                                                                             |
+|Rotating ring 30 degrees (M_PI * (30.0 / 180.0))...done                      |
+|Rotated ring charge coordinates                                              |
+|+---------+---------+---------+                                              |
+||    X    |    Y    |    Z    |                                              |
+|+---------+---------+---------+                                              |
+||  72.7868| -54.1859|  42.0235| Ring rotation degrees: 30.000                |
+|| -81.5252|  33.7369| -47.0686| Ring rotation degrees: 30.000                |
+||  50.9854|  80.8331|  29.4364| Ring rotation degrees: 30.000                |
+|| -54.3505|  77.8547| -31.3793| Ring rotation degrees: 30.000                |
+||  53.1111|  78.9871|  30.6637| Ring rotation degrees: 30.000                |
+|| -35.6738| -91.1218| -20.5963| Ring rotation degrees: 30.000                |
+||  69.9900|  58.8942|  40.4087| Ring rotation degrees: 30.000                |
+|| -45.6610| -84.9712| -26.3624| Ring rotation degrees: 30.000                |
+||  34.8895|  91.5258|  20.1434| Ring rotation degrees: 30.000                |
+|| -75.0918| -49.8160| -43.3543| Ring rotation degrees: 30.000                |
+|+---------+---------+---------+                                              |
+|                                                                             |
+|Are the charges coordinates after rotation correct?: yes                     |
++-----------------------------------------------------------------------------+

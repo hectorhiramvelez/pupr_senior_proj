@@ -1,0 +1,412 @@
+#pragma once
+
+#ifndef VECTOR3_HPP_INLINE
+#define VECTOR3_HPP_INLINE
+
+#ifndef VECTOR3_HPP
+#pragma warning("Please include vector3.hpp instead of vector3.hpp.inline")
+#endif
+
+#include "vector3.hpp"
+
+#include <cmath>
+
+template<typename dtype>
+vector3<dtype>::vector3()
+{
+	/* Nothing to do */
+}
+
+template<typename dtype>
+vector3<dtype>::vector3(const dtype& X, const dtype& Y, const dtype& Z)
+{
+	this->x = X;
+	this->y = Y;
+	this->z = Z;
+}
+
+template<typename dtype>
+vector3<dtype>::vector3(const vector3<dtype>& V)
+{
+	this->x = V.x;
+	this->y = V.y;
+	this->z = V.z;
+}
+
+template<typename dtype>
+vector3<dtype>::~vector3()
+{
+	/* Nothing to do */
+}
+
+template<typename dtype>
+const dtype& vector3<dtype>::getX() const
+{
+	return this->x;
+}
+
+template<typename dtype>
+dtype& vector3<dtype>::getX()
+{
+	return this->x;
+}
+
+template<typename dtype>
+const dtype& vector3<dtype>::getY() const
+{
+	return this->y;
+}
+
+template<typename dtype>
+dtype& vector3<dtype>::getY()
+{
+	return this->y;
+}
+
+template<typename dtype>
+const dtype& vector3<dtype>::getZ() const
+{
+	return this->z;
+}
+
+template<typename dtype>
+dtype& vector3<dtype>::getZ()
+{
+	return this->z;
+}
+
+template<typename dtype>
+void vector3<dtype>::setX(const dtype& X)
+{
+	this->x = X;
+}
+
+template<typename dtype>
+void vector3<dtype>::setY(const dtype& Y)
+{
+	this->y = Y;
+}
+
+template<typename dtype>
+void vector3<dtype>::setZ(const dtype& Z)
+{
+	this->z = Z;
+}
+
+template<typename dtype>
+dtype vector3<dtype>::magnitude() const
+{
+	return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2));
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::difference(const vector3<dtype>& V) const
+{
+	return vector3<dtype>(this->x - V.x, this->y - V.y, this->z - V.z);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::difference(const dtype& X, const dtype& Y, const dtype& Z) const
+{
+	return vector3<dtype>(this->x - X, this->y - Y, this->z - Z);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::rotate(const dtype& rotX, const dtype& rotY, const dtype& rotZ) const
+{
+	double cosX, cosY, cosZ;
+	double sinX, sinY, sinZ;
+
+	cosX = cos(rotX); cosY = cos(rotY); cosZ = cos(rotZ);
+	sinX = sin(rotX); sinY = sin(rotY); sinZ = sin(rotZ);
+
+	#define VECTOR3_HPP_INLINE_ROTATION_X this->x * (cosY * cosZ)   +  this->y * (cosX * sinZ + sinX * sinY * cosZ)  +  this->z * (sinX * sinZ - cosX * sinY * cosZ)
+	#define VECTOR3_HPP_INLINE_ROTATION_Y this->x * (-cosY * sinZ)  +  this->y * (cosX * cosZ - sinX * sinY * sinZ)  +  this->z * (sinX * cosZ + cosX * sinY * sinZ)
+	#define VECTOR3_HPP_INLINE_ROTATION_Z this->x * (sinY)          +  this->y * (-sinX * cosY)                      +  this->z * (cosX * cosY)
+
+	return vector3<dtype>(VECTOR3_HPP_INLINE_ROTATION_X, VECTOR3_HPP_INLINE_ROTATION_Y, VECTOR3_HPP_INLINE_ROTATION_Z);
+
+	#undef VECTOR3_HPP_INLINE_ROTATION_X
+	#undef VECTOR3_HPP_INLINE_ROTATION_Y
+	#undef VECTOR3_HPP_INLINE_ROTATION_Z
+
+	/* hope i don't have to do this again ... at least for a while */
+	/* Reference: http://en.wikipedia.org/wiki/Rotation_representation */
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::unit() const
+{
+	dtype mag;
+
+	mag = this->magnitude();
+	return vector3<dtype>(this->x / mag, this->y / mag, this->z / mag);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::inverse() const
+{
+	return vector3<dtype>(-(this->x), -(this->y), -(this->z));
+}
+
+template<typename dtype>
+dtype vector3<dtype>::dot(const vector3<dtype>& V) const
+{
+	return (this->x * V.x) + (this->y * V.y) + (this->z * V.z);
+}
+
+template<typename dtype>
+dtype vector3<dtype>::dot(const dtype& X, const dtype& Y, const dtype& Z) const
+{
+	return (this->x * X) + (this->y * Y) + (this->z * Z);
+}
+
+template<typename dtype>
+dtype vector3<dtype>::dotProduct(const vector3<dtype>& V) const
+{
+	return (this->x * V.x) + (this->y * V.y) + (this->z * V.z);
+}
+
+template<typename dtype>
+dtype vector3<dtype>::dotProduct(const dtype& X, const dtype& Y, const dtype& Z) const
+{
+	return (this->x * X) + (this->y * Y) + (this->z * Z);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::cross(const vector3<dtype>& V) const
+{
+	return vector3<dtype>((this->y * V.z) - (this->z * V.y), -((this->x * V.z) - (this->z * V.x)), (this->x * V.y) - (this->y * V.x));
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::cross(const dtype& X, const dtype& Y, const dtype& Z) const
+{
+	return vector3<dtype>((this->y * Z) - (this->z * Y), -((this->x * Z) - (this->z * X)), (this->x * Y) - (this->y * X));
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::crossProduct(const vector3<dtype>& V) const
+{
+	return vector3<dtype>((this->y * V.z) - (this->z * V.y), -((this->x * V.z) - (this->z * V.x)), (this->x * V.y) - (this->y * V.x));
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::crossProduct(const dtype& X, const dtype& Y, const dtype& Z) const
+{
+	return vector3<dtype>((this->y * Z) - (this->z * Y), -((this->x * Z) - (this->z * X)), (this->x * Y) - (this->y * X));
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::operator + (const vector3<dtype>& V) const
+{
+	return vector3<dtype>(this->x + V.x, this->y + V.y, this->z + V.z);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::operator - (const vector3<dtype>& V) const
+{
+	return vector3<dtype>(this->x - V.x, this->y - V.y, this->z - V.z);
+}
+
+template<typename dtype>
+dtype vector3<dtype>::operator * (const vector3<dtype>& V) const
+{
+	return (this->x * V.x) + (this->y * V.y) + (this->z * V.z);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::operator / (const vector3<dtype>& V) const
+{
+	return vector3<dtype>((this->y * V.z) - (this->z * V.y), -((this->x * V.z) - (this->z * V.x)), (this->x * V.y) - (this->y * V.x));
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::operator * (const dtype& D) const
+{
+	return vector3<dtype>(this->x * D, this->y * D, this->z * D);
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::operator / (const dtype& D) const
+{
+	return vector3<dtype>(this->x / D, this->y / D, this->z / D);
+}
+
+template<typename dtype>
+vector3<dtype>& vector3<dtype>::operator += (const vector3<dtype>& V)
+{
+	this->x += V.x;
+	this->y += V.y;
+	this->z += V.z;
+
+	return *this;
+}
+
+template<typename dtype>
+vector3<dtype>& vector3<dtype>::operator -= (const vector3<dtype>& V)
+{
+	this->x -= V.x;
+	this->y -= V.y;
+	this->z -= V.z;
+
+	return *this;
+}
+
+template<typename dtype>
+vector3<dtype>& vector3<dtype>::operator /= (const vector3<dtype>& V)
+{
+	return *this / V;
+}
+
+template<typename dtype>
+vector3<dtype>& vector3<dtype>::operator *= (const dtype& D)
+{
+	this->x *= D;
+	this->y *= D;
+	this->z *= D;
+
+	return *this;
+}
+
+template<typename dtype>
+vector3<dtype>& vector3<dtype>::operator /= (const dtype& D)
+{
+	this->x /= D;
+	this->y /= D;
+	this->z /= D;
+
+	return *this;
+}
+
+template<typename dtype>
+vector3<dtype> vector3<dtype>::operator - () const
+{
+	return vector3<dtype>(-(this->x), -(this->y), -(this->z));
+}
+
+template<typename dtype>
+vector3<dtype>& vector3<dtype>::operator = (const vector3<dtype>& V)
+{
+	this->x = V.x;
+	this->y = V.y;
+	this->z = V.z;
+
+	return *this;
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator < (const vector3<dtype>& V) const
+{
+	return this->magnitude() < V.magnitude();
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator < (const dtype& D) const
+{
+	return this->magnitude() < D;
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator <= (const vector3<dtype>& V) const
+{
+	return this->magnitude() <= V.magnitude();
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator <= (const dtype& D) const
+{
+	return this->magnitude() <= D;
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator == (const vector3<dtype>& V) const
+{
+	return this->magnitude() == V.magnitude();
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator == (const dtype& D) const
+{
+	return this->magnitude() == D;
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator >= (const vector3<dtype>& V) const
+{
+	return this->magnitude() >= V.magnitude();
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator >= (const dtype& D) const
+{
+	return this->magnitude() >= D;
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator > (const vector3<dtype>& V) const
+{
+	return this->magnitude() > V.magnitude();
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator > (const dtype& D) const
+{
+	return this->magnitude() > D;
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator != (const vector3<dtype>& V) const
+{
+	return this->magnitude() != V.magnitude();
+}
+
+template<typename dtype>
+bool vector3<dtype>::operator != (const dtype& D) const
+{
+	return this->magnitude() != D;
+}
+
+template<typename dtype>
+vector3<dtype> operator * (const dtype& D, const vector3<dtype>& V)
+{
+	return V * D;
+}
+
+template<typename dtype>
+bool operator < (const dtype& D, const vector3<dtype>& V)
+{
+	return V > D;
+}
+
+template<typename dtype>
+bool operator <= (const dtype& D, const vector3<dtype>& V)
+{
+	return V >= D;
+}
+
+template<typename dtype>
+bool operator == (const dtype& D, const vector3<dtype>& V)
+{
+	return V == D;
+}
+
+template<typename dtype>
+bool operator >= (const dtype& D, const vector3<dtype>& V)
+{
+	return V <= D;
+}
+
+template<typename dtype>
+bool operator > (const dtype& D, const vector3<dtype>& V)
+{
+	return V < D;
+}
+
+template<typename dtype>
+bool operator != (const dtype& D, const vector3<dtype>& V)
+{
+	return V != D;
+}
+
+#endif /* VECTOR3_HPP_INLINE */
