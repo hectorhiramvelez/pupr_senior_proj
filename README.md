@@ -1,5 +1,5 @@
 # pupr_senior_proj
-This is my Senior Project done at the Polytechnic University of Puerto Rico before I graduated
+This is my Senior Project done at the Polytechnic University of Puerto Rico before I graduated. This project was done for the Plasma Laboratories.
 
 Note that this code is old, dating back to August 2007 and may therefore have silly tricks and mistakes
 
